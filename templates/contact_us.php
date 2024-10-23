@@ -19,7 +19,6 @@
                 </div>
 
                 <div class="container-logo">
-                    <i class="fa-solid fa-mug-hot"></i>
                     <h1 class="logo"><a href="/">KABA</a></h1>
                 </div>
 

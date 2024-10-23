@@ -5,10 +5,6 @@ $clave = ""; // Tu contraseña de base de datos
 $port = "3306";
 $dbname = "kaba_contact";
 
-/*$db = mysqli_connect($_ENV['DB_HOST'] ?? '',$_ENV['DB_USER'] ?? '', $_ENV['DB_PASS'] ?? '', $selectDB['namedb']);
-mysqli_set_charset($db, "utf8");*/
-
-
 // Crear conexión
 $conn = new mysqli($servidor, $usuario, $clave, $dbname);
 
@@ -38,6 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 
-header('Location: index.php');
+header('Location: listar_contactos.php');
 
 ?>
