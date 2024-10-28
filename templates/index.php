@@ -33,6 +33,7 @@
 							<span class="text">Carrito</span>
 							<span class="number">(0)</span>
 						</div>
+						<a href="logout.php" class="logout-link">Cerrar sesión</a>
 					</div>
 				</div>
 			</div>
@@ -47,6 +48,7 @@
 						<li><a href="#container_facial">Linea facial</a></li>
 						<li><a href="nosotros.php">Nosotros</a></li>
 						<li><a href="contact_us.php">Contáctanos</a></li>
+						<li><a href="dashboard.php">Dashboard</a></li>
 					</ul>
 
 					<form class="search-form">

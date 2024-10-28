@@ -93,6 +93,17 @@ $conn->close();
         .btn:hover {
             background-color: hsl(345, 80%, 60%);
         }
+        .register-link {
+            text-align: center;
+            margin-top: 15px;
+            display: block;
+            color: hsl(345, 100%, 70%);
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .register-link:hover {
+            text-decoration: underline;
+        }
         .error {
             color: red;
             text-align: center;
@@ -115,6 +126,9 @@ $conn->close();
         <?php if (!empty($error)): ?>
             <p class="error"><?= $error; ?></p>
         <?php endif; ?>
+        
+        <!-- Enlace al formulario de registro -->
+        <a href="register.php" class="register-link">¿No tienes una cuenta? Regístrate</a>
     </form>
 </div>
 

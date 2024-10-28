@@ -1,5 +1,4 @@
-<html>
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -24,15 +23,17 @@
 					</div>
 
 					<div class="container-logo">
-						<i class="fa-solid fa-mug-hot"></i>
 						<h1 class="logo"><a href="/">KABA</a></h1>
 					</div>
 
 					<div class="container-user">
+						<i class="fa-solid fa-user"></i>
 						<i class="fa-solid fa-basket-shopping"></i>
-						<div class="btn_carrito">
+						<div class="content-shopping-cart">
 							<span class="text">Carrito</span>
+							<span class="number">(0)</span>
 						</div>
+						<a href="logout.php" class="logout-link">Cerrar sesión</a>
 					</div>
 				</div>
 			</div>
@@ -45,8 +46,9 @@
 						<li><a href="#container-options">Linea capilar</a></li>
 						<li><a href="#container_specials">Linea corporal</a></li>
 						<li><a href="#container_facial">Linea facial</a></li>
-						<li><a href="#">Nosotros</a></li>
+						<li><a href="nosotros.php">Nosotros</a></li>
 						<li><a href="contact_us.php">Contáctanos</a></li>
+						<li><a href="dashboard.php">Dashboard</a></li>
 					</ul>
 
 					<form class="search-form">
@@ -59,56 +61,15 @@
 			</div>
 		</header>
 
-        <?php
-$servidor = "localhost"; // Cambia si tu servidor no es localhost
-$usuario = "root"; // Tu usuario de base de datos
-$clave = ""; // Tu contraseña de base de datos
-$port = "3306";
-$dbname = "kaba_contact";
-$conn = new mysqli($servidor, $usuario, $clave, $dbname);
-
-$categoria = 'facial'; // Filtrar por categoría facial
-
-$sql = "SELECT * FROM productos WHERE categoria = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $categoria);
-$stmt->execute();
-$result = $stmt->get_result();
-?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Línea Facial</title>
-    <link rel="stylesheet" href="/pagina.valentina/css/estilos.css">
-</head>
-<body>
-    <header>
-        <h1>Línea Facial</h1>
-    </header>
-    <main class="container_products">
-        <?php while ($producto = $result->fetch_assoc()): ?>
-            <div class="producto">
-                <img src="<?= $producto['img']; ?>" alt="<?= $producto['nombre']; ?>">
-                <h3><?= $producto['nombre']; ?></h3>
-                <p>Precio: <?= $producto['precio']; ?></p>
-            </div>
-        <?php endwhile; ?>
-    </main>
-</body>
-</html>
-
-<?php
-$conn->close();
-?>
-
+    <main class="dashboard-container">
+        <h2 class="title_dashboard" >Panel de Administración</h2>
+        <div class="dashboard-options">
+            <a href="crud_clientes.php" class="dashboard-link">CRUD Clientes</a>
+            <a href="crud_productos.php" class="dashboard-link">CRUD Productos</a>
         </div>
+    </main>
 
-
-
-
-        <footer class="footer">
+    <footer class="footer">
 			<div class="container container-footer">
 				<div class="menu-footer">
 					<div class="contact-info">
@@ -177,16 +138,10 @@ $conn->close();
 			</div>
 		</footer>
 
-
-
-
-
-
-
-        <script
+		<script
 			src="https://kit.fontawesome.com/81581fb069.js"
 			crossorigin="anonymous"
 		></script>
-
-        <script src="/pagina.valentina/JS/scriptfacial.js"></script>
+</body>
 </html>
+

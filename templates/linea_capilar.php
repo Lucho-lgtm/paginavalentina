@@ -59,12 +59,52 @@
 			</div>
 		</header>
 
-        <div class="cart ocult">
-        
-        </div>
-    
-        <div class="container_products">
-        </div>
+<?php
+$servidor = "localhost"; // Cambia si tu servidor no es localhost
+$usuario = "root"; // Tu usuario de base de datos
+$clave = ""; // Tu contraseña de base de datos
+$port = "3306";
+$dbname = "kaba_contact";
+
+$conn = new mysqli($servidor, $usuario, $clave, $dbname);
+// Conectar a la base de datos
+$conn = new mysqli($servidor, $usuario, $clave, $dbname);
+
+$categoria = 'capilar'; // Filtrar por categoría
+
+$sql = "SELECT * FROM productos WHERE categoria = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $categoria);
+$stmt->execute();
+$result = $stmt->get_result();
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Línea Capilar</title>
+    <link rel="stylesheet" href="/pagina.valentina/css/estilos.css">
+</head>
+<body>
+    <header>
+        <h1>Línea Capilar</h1>
+    </header>
+    <main class="container_products">
+        <?php while ($producto = $result->fetch_assoc()): ?>
+            <div class="producto">
+                <img src="<?= $producto['img']; ?>" alt="<?= $producto['nombre']; ?>">
+                <h3><?= $producto['nombre']; ?></h3>
+                <p>Precio: <?= $producto['precio']; ?></p>
+            </div>
+        <?php endwhile; ?>
+    </main>
+</body>
+</html>
+
+<?php
+$conn->close();
+?>
 
 
 
