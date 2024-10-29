@@ -32,10 +32,14 @@
 						<i class="fa-solid fa-basket-shopping"></i>
 						<div class="btn_carrito">
 							<span class="text">Carrito</span>
+							<div class="cart ocult">
+							<div class="cart-items"></div>
+							<button class="btn-compra" onclick="irAPaginaCompras()">Ir a Compras</button>
 						</div>
 					</div>
 				</div>
 			</div>
+			
 
 			<div class="container-navbar">
 				<nav class="navbar container">
@@ -66,7 +70,6 @@ $clave = ""; // Tu contraseña de base de datos
 $port = "3306";
 $dbname = "kaba_contact";
 
-$conn = new mysqli($servidor, $usuario, $clave, $dbname);
 // Conectar a la base de datos
 $conn = new mysqli($servidor, $usuario, $clave, $dbname);
 
@@ -88,7 +91,7 @@ $result = $stmt->get_result();
 </head>
 <body>
     <header>
-        <h1>Línea Capilar</h1>
+        <h1 class="titleCapi">Línea Capilar</h1>
     </header>
     <main class="container_products">
         <?php while ($producto = $result->fetch_assoc()): ?>

@@ -371,7 +371,7 @@ h3{
         
         const nombre = document.getElementById('nombre').value;
         const precio = document.getElementById('precio').value;
-        const img = document.getElementById('img').value;
+        const img = document.getElementById('img')?.files[0] || null;
         const categoria = document.getElementById('categoria').value;
 
         // Enviar datos al servidor usando fetch

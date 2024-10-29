@@ -1155,7 +1155,7 @@ textarea{
     position: fixed;
     top: 20px;
     right: 20px;
-    width: 300px;
+    width: 450px;
     max-height: 500px;
     border: 1px solid #ddd;
     background-color: #f9f9f9;
@@ -1163,6 +1163,7 @@ textarea{
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
+    z-index: 1000; /* Asegura que el carrito esté encima de todos los elementos */
   }
 
   .cart p{
@@ -1516,4 +1517,22 @@ textarea{
 
 .title_dashboard{
     margin-bottom: 50px;
+}
+
+.titleCapi{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.titleCorp{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.titleFac{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }

@@ -3,10 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Kaba oficial</title>
 		<link rel="stylesheet" href="/pagina.valentina/css/estilos.css" />
 	</head>
@@ -61,15 +58,16 @@
 			</div>
 		</header>
 
-    <main class="dashboard-container">
-        <h2 class="title_dashboard" >Panel de Administración</h2>
-        <div class="dashboard-options">
-            <a href="crud_clientes.php" class="dashboard-link">CRUD Clientes</a>
-            <a href="crud_productos.php" class="dashboard-link">CRUD Productos</a>
-        </div>
-    </main>
+		<main class="dashboard-container">
+			<h2 class="title_dashboard">Panel de Administración</h2>
+			<div class="dashboard-options">
+				<a href="crud_clientes.php" class="dashboard-link">CRUD Clientes</a>
+				<a href="crud_productos.php" class="dashboard-link">CRUD Productos</a>
+				<a href="compras.php" class="dashboard-link">Ver Compras</a> <!-- Botón para acceder al CRUD de Compras -->
+			</div>
+		</main>
 
-    <footer class="footer">
+		<footer class="footer">
 			<div class="container container-footer">
 				<div class="menu-footer">
 					<div class="contact-info">
@@ -83,17 +81,12 @@
 						</ul>
 						<div class="social-icons">
 							<a href="https://www.facebook.com/profile.php?id=61564221783717&mibextid=ZbWKwL"><i class="fa-brands fa-facebook"></i></a>
-									
 							<a href="https://www.instagram.com/kaba_montenegro?igsh=MXQ3NmZndm9hZ21yaQ=="><i class="fa-brands fa-instagram"></i></a>
-							
 							<a href="https://whatsapp.com/dl/"><i class="fa-brands fa-whatsapp"></i></a>
-
 							<a href="https://youtube.com/@valentinaandica-q1g?si=tM6izhh_IXvBu1MX"><i class="fa-brands fa-youtube"></i></a>
-									
-							<a href=" https://www.threads.net/@valentina__andica?invite=2"><i class="fa-brands fa-threads"></i></a>
-						
+							<a href="https://www.threads.net/@valentina__andica?invite=2"><i class="fa-brands fa-threads"></i></a>
 							<a href="https://www.tiktok.com/@kabaoficial10?_t=8pdwXRdXePF&_r=1"><i class="fa-brands fa-tiktok"></i></a>
-							</div>
+						</div>
 					</div>
 					<div class="information">
 						<p class="title-footer">Información</p>
@@ -108,7 +101,6 @@
 
 					<div class="my-account">
 						<p class="title-footer">Sobre nosotros</p>
-
 						<ul>
 							<li><a href="#"> Quienes somos</a></li>
 							<li><a href="#">Nuestras tiendas</a></li>
@@ -119,21 +111,19 @@
 
 					<div class="newsletter">
 						<p class="title-footer">Suscribete</p>
-
 						<div class="content">
 							<p>
 								Suscríbete a nuestros boletines ahora y mantente al
 								día con nuevas colecciones y ofertas exclusivas.
 							</p>
-							<input type="email" placeholder="Ingresa el correo aquí...">
+							<input type="email" placeholder="Ingresa el correo aquí..." />
 							<button>Suscríbete</button>
 						</div>
 					</div>
 				</div>
 
 				<div class="pagos">
-		
-					<img class="mediodepago" src="/pagina.valentina/images/mediosdepago.jpg" alt="">
+					<img class="mediodepago" src="/pagina.valentina/images/mediosdepago.jpg" alt="" />
 				</div>
 			</div>
 		</footer>
@@ -142,6 +132,6 @@
 			src="https://kit.fontawesome.com/81581fb069.js"
 			crossorigin="anonymous"
 		></script>
-</body>
+	</body>
 </html>
 
