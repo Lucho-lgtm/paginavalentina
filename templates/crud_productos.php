@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $precio = $_POST['precio'];
         $img_nombre = $_FILES['img']['name'];
         $img_temp = $_FILES['img']['tmp_name'];
-        $img_carpeta = '/ruta/a/tu/carpeta_de_imagenes/'; // Cambia esta ruta a donde guardas las imágenes en tu servidor
+        $img_carpeta = 'pagina.valentina/images/'; 
         $img_url = $img_carpeta . basename($img_nombre);
         if (move_uploaded_file($img_temp, $_SERVER['DOCUMENT_ROOT'] . $img_url)) {
             $sql = "INSERT INTO productos (nombre, img, precio, categoria) VALUES (?, ?, ?, ?)";

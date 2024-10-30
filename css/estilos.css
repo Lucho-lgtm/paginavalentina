@@ -277,6 +277,10 @@ html {
     color: var(--primary-color);
 }
 
+.fa-plane-up:before{
+    margin-left: 10px;
+}
+
 .feature-content {
     display: flex;
     flex-direction: column;

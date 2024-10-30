@@ -28,6 +28,6 @@ if (isset($_GET['id'])) {
 }
 
 // Redirigir de vuelta a la lista de contactos
-header("Location: listar_contactos.php");
+header("Location: crud_clientes.php");
 $conn->close();
 ?>

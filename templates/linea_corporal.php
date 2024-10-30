@@ -24,7 +24,6 @@
 					</div>
 
 					<div class="container-logo">
-						<i class="fa-solid fa-mug-hot"></i>
 						<h1 class="logo"><a href="/">KABA</a></h1>
 					</div>
 
@@ -32,6 +31,9 @@
 						<i class="fa-solid fa-basket-shopping"></i>
 						<div class="btn_carrito">
 							<span class="text">Carrito</span>
+							<div class="cart ocult">
+							<div class="cart-items"></div>
+							<button class="btn-compra" onclick="irAPaginaCompras()">Ir a Compras</button>
 						</div>
 					</div>
 				</div>
@@ -45,7 +47,7 @@
 						<li><a href="#container-options">Linea capilar</a></li>
 						<li><a href="#container_specials">Linea corporal</a></li>
 						<li><a href="#container_facial">Linea facial</a></li>
-						<li><a href="#">Nosotros</a></li>
+						<li><a href="nosotros.php">Nosotros</a></li>
 						<li><a href="contact_us.php">Contáctanos</a></li>
 					</ul>
 
@@ -59,17 +61,17 @@
 			</div>
 		</header>
 
-        <?php
-// Conectar a la base de datos
+		<?php
 $servidor = "localhost"; // Cambia si tu servidor no es localhost
 $usuario = "root"; // Tu usuario de base de datos
 $clave = ""; // Tu contraseña de base de datos
 $port = "3306";
 $dbname = "kaba_contact";
+
 // Conectar a la base de datos
 $conn = new mysqli($servidor, $usuario, $clave, $dbname);
 
-$categoria = 'corporal'; // Filtrar por categoría corporal
+$categoria = 'corporal'; // Filtrar por categoría
 
 $sql = "SELECT * FROM productos WHERE categoria = ?";
 $stmt = $conn->prepare($sql);
@@ -82,12 +84,12 @@ $result = $stmt->get_result();
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Línea Corporal</title>
+    <title>Línea Capilar</title>
     <link rel="stylesheet" href="/pagina.valentina/css/estilos.css">
 </head>
 <body>
     <header>
-        <h1>Línea Corporal</h1>
+        <h1 class="titleCorp">Línea Capilar</h1>
     </header>
     <main class="container_products">
         <?php while ($producto = $result->fetch_assoc()): ?>

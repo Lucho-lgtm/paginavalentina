@@ -24,7 +24,6 @@
 					</div>
 
 					<div class="container-logo">
-						<i class="fa-solid fa-mug-hot"></i>
 						<h1 class="logo"><a href="/">KABA</a></h1>
 					</div>
 
@@ -49,7 +48,7 @@
 						<li><a href="#container-options">Linea capilar</a></li>
 						<li><a href="#container_specials">Linea corporal</a></li>
 						<li><a href="#container_facial">Linea facial</a></li>
-						<li><a href="#">Nosotros</a></li>
+						<li><a href="nosotros.php">Nosotros</a></li>
 						<li><a href="contact_us.php">Contáctanos</a></li>
 					</ul>
 

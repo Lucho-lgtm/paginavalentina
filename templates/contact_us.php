@@ -85,7 +85,7 @@ if (isset($_SESSION['mensaje_enviado'])) {
                 <li><a href="#container-options">Línea capilar</a></li>
                 <li><a href="#container_specials">Línea corporal</a></li>
                 <li><a href="#container_facial">Línea facial</a></li>
-                <li><a href="#">Nosotros</a></li>
+                <li><a href="nosotros.php">Nosotros</a></li>
                 <li><a href="contact_us.php">Contáctanos</a></li>
             </ul>
             <form class="search-form">

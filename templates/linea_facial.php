@@ -24,14 +24,16 @@
 					</div>
 
 					<div class="container-logo">
-						<i class="fa-solid fa-mug-hot"></i>
 						<h1 class="logo"><a href="/">KABA</a></h1>
 					</div>
 
 					<div class="container-user">
-						<i class="fa-solid fa-basket-shopping"></i>
+					<i class="fa-solid fa-basket-shopping"></i>
 						<div class="btn_carrito">
 							<span class="text">Carrito</span>
+							<div class="cart ocult">
+							<div class="cart-items"></div>
+							<button class="btn-compra" onclick="irAPaginaCompras()">Ir a Compras</button>
 						</div>
 					</div>
 				</div>
@@ -65,9 +67,11 @@ $usuario = "root"; // Tu usuario de base de datos
 $clave = ""; // Tu contraseña de base de datos
 $port = "3306";
 $dbname = "kaba_contact";
+
+// Conectar a la base de datos
 $conn = new mysqli($servidor, $usuario, $clave, $dbname);
 
-$categoria = 'facial'; // Filtrar por categoría facial
+$categoria = 'facial'; // Filtrar por categoría
 
 $sql = "SELECT * FROM productos WHERE categoria = ?";
 $stmt = $conn->prepare($sql);
@@ -80,12 +84,12 @@ $result = $stmt->get_result();
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Línea Facial</title>
+    <title>Línea Capilar</title>
     <link rel="stylesheet" href="/pagina.valentina/css/estilos.css">
 </head>
 <body>
     <header>
-        <h1>Línea Facial</h1>
+        <h1 class="titleCapi">Línea Capilar</h1>
     </header>
     <main class="container_products">
         <?php while ($producto = $result->fetch_assoc()): ?>
