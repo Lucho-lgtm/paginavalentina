@@ -1,9 +1,49 @@
+<?php
+$servidor = "localhost";
+$usuario = "root";
+$clave = "";
+$dbname = "kaba_contact";
+
+$conn = new mysqli($servidor, $usuario, $clave, $dbname);
+
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+
+// Eliminar un producto del carrito
+if (isset($_GET["delete"])) {
+    $id = $_GET["delete"];
+    $conn->query("DELETE FROM carrito WHERE id = $id");
+    header("Location: carrito.php");
+    exit();
+}
+
+// Editar un producto en el carrito
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit"])) {
+    $id = $_POST["id"];
+    $nombre = $_POST["nombre"];
+    $precio = $_POST["precio"];
+
+    $sql = "UPDATE carrito SET nombre = ?, precio = ? WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sdi", $nombre, $precio, $id);
+    $stmt->execute();
+
+    header("Location: carrito.php");
+    exit();
+}
+
+// Obtener todos los productos en el carrito
+$result = $conn->query("SELECT * FROM carrito");
+
+$total = 0;
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Carrito de Compras</title>
-    <link rel="stylesheet" href="/pagina.valentina/css/estilos.css">
     <style>
         /* Estilos generales */
         body {
@@ -97,9 +137,19 @@
         .button-delete:hover {
             background-color: #c82333;
         }
+        .back-button { 
+            display: inline-block; 
+            margin-bottom: 20px; 
+            padding: 10px 20px; 
+            background-color: #555; 
+            color: #fff; 
+            text-decoration: none; 
+            border-radius: 5px; 
+        }
     </style>
 </head>
 <body>
+    <a href="dashboard.php" class="back-button">Volver al dashboard</a>
     <div class="compras-container">
         <h1 class="compras-title">Carrito de Compras</h1>
         <table>
@@ -110,86 +160,40 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody id="productos-carrito"></tbody>
+            <tbody>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row["nombre"]) ?></td>
+                        <td>$<?= number_format($row["precio"], 2) ?></td>
+                        <td>
+                            <!-- Formulario para editar producto -->
+                            <form method="POST" style="display: inline;">
+                                <input type="hidden" name="id" value="<?= $row["id"] ?>">
+                                <input type="text" name="nombre" value="<?= htmlspecialchars($row["nombre"]) ?>" required>
+                                <input type="number" name="precio" value="<?= $row["precio"] ?>" step="0.01" required>
+                                <button type="submit" name="edit" class="button-edit">Editar</button>
+                            </form>
+                            <!-- Botón para eliminar producto -->
+                            <a href="carrito.php?delete=<?= $row["id"] ?>" class="button-delete">Eliminar</a>
+                        </td>
+                    </tr>
+                    <?php $total += $row["precio"]; ?>
+                <?php endwhile; ?>
+            </tbody>
         </table>
         <div class="total-container">
-            Total: <span class="total-amount" id="total-amount">$0</span>
+            Total: <span class="total-amount">$<?= number_format($total, 2) ?></span>
         </div>
-        <button id="confirmar-compra" class="button-confirm">Confirmar Compra</button>
+        <button class="button-confirm" onclick="confirmarCompra()">Confirmar Compra</button>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const productosCarrito = document.getElementById('productos-carrito');
-            const totalAmount = document.getElementById('total-amount');
-            let total = 0;
-
-            // Obtener carrito del localStorage
-            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
-            if (carrito.length === 0) {
-                productosCarrito.innerHTML = "<tr><td colspan='3'>No hay productos en el carrito.</td></tr>";
-                return; // Salir si el carrito está vacío
-            }
-
-            // Renderizar productos en el carrito
-            function renderCarrito() {
-                productosCarrito.innerHTML = ""; // Limpiar el contenido previo
-                total = 0;
-
-                carrito.forEach((producto, index) => {
-                    if (producto.nombre && producto.precio) {
-                        total += producto.precio;
-
-                        productosCarrito.innerHTML += `
-                            <tr>
-                                <td>${producto.nombre}</td>
-                                <td>$${producto.precio.toFixed(2)}</td>
-                                <td>
-                                    <button class="button-edit" onclick="editarProducto(${index})">Editar</button>
-                                    <button class="button-delete" onclick="eliminarProducto(${index})">Eliminar</button>
-                                </td>
-                            </tr>
-                        `;
-                    } else {
-                        console.error("Producto sin nombre o precio:", producto);
-                    }
-                });
-
-                totalAmount.textContent = `$${total.toFixed(2)}`;
-            }
-
-            // Función para eliminar un producto
-            window.eliminarProducto = (index) => {
-                carrito.splice(index, 1); // Eliminar producto del carrito
-                localStorage.setItem('carrito', JSON.stringify(carrito)); // Actualizar el localStorage
-                renderCarrito(); // Volver a renderizar el carrito
-            };
-
-            // Función para editar un producto
-            window.editarProducto = (index) => {
-                const nuevoNombre = prompt("Ingrese el nuevo nombre del producto:", carrito[index].nombre);
-                const nuevoPrecio = parseFloat(prompt("Ingrese el nuevo precio del producto:", carrito[index].precio));
-
-                if (nuevoNombre && !isNaN(nuevoPrecio)) {
-                    carrito[index].nombre = nuevoNombre;
-                    carrito[index].precio = nuevoPrecio;
-                    localStorage.setItem('carrito', JSON.stringify(carrito)); // Actualizar el localStorage
-                    renderCarrito(); // Volver a renderizar el carrito
-                } else {
-                    alert("Por favor, ingrese un nombre y un precio válidos.");
-                }
-            };
-
-            // Renderizar carrito inicialmente
-            renderCarrito();
-
-            document.getElementById("confirmar-compra").addEventListener("click", () => {
-                alert("Compra confirmada.");
-                localStorage.removeItem('carrito'); // Limpia el carrito
-                window.location.reload();
-            });
-        });
+        function confirmarCompra() {
+            alert("Compra confirmada.");
+            // Puedes redireccionar o realizar más acciones aquí después de confirmar la compra
+        }
     </script>
 </body>
 </html>
+
+<?php $conn->close(); ?>

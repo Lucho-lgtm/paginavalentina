@@ -63,7 +63,8 @@
 			<div class="dashboard-options">
 				<a href="crud_clientes.php" class="dashboard-link">CRUD Clientes</a>
 				<a href="crud_productos.php" class="dashboard-link">CRUD Productos</a>
-				<a href="compras.php" class="dashboard-link">Ver Compras</a> <!-- Botón para acceder al CRUD de Compras -->
+				<a href="compras.php" class="dashboard-link">Ver Compras</a>
+				<a href="usuarios_crud.php" class="dashboard-link">CRUD Usuarios</a>
 			</div>
 		</main>
 
